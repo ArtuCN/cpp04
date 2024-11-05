@@ -12,13 +12,13 @@ class Animal
 	public:
 		std::string getType() const;
 		void setType(std::string);
-		void makeSound() const;
 
 		Animal();
 		Animal(std::string type);
 		Animal &operator=(const Animal &a);
 		~Animal();
 
+		virtual void makeSound() const;
 };
 
 class Cat: virtual public Animal
@@ -29,9 +29,10 @@ class Cat: virtual public Animal
 		Cat &operator=(const Cat &c);
 		~Cat();
 
-		std::string virtual getType() const;
 		void makeSound() const;
 };
+
+
 
 class Dog: virtual public Animal
 {
@@ -41,7 +42,6 @@ class Dog: virtual public Animal
 		Dog &operator=(const Dog &d);
 		~Dog();
 
-		std::string virtual getType() const;
 		void makeSound() const;
 };
 

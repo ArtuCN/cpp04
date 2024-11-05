@@ -2,10 +2,11 @@
 
 int main()
 {
-const Animal* j = new Dog();
-const Animal* i = new Cat();
-delete j;
-delete i;
+	const Animal* j = new Dog();
+	const Animal* i = new Cat();
 
-return 0;
+	delete i;
+	delete j;
+
+	return 0;
 }

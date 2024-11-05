@@ -1,98 +1,75 @@
 #include "Polymorphism.hpp"
 
-std::string Animal::getType() const
-{
-	return this->_type;
+Animal::Animal() : _type("Animal") {
 }
 
-void Animal::setType(std::string type)
-{
+Animal::Animal(std::string type) : _type(type) {}
+
+Animal &Animal::operator=(const Animal &a) {
+	if (this != &a) {
+		_type = a._type;
+		_sound = a._sound;
+	}
+	return *this;
+}
+
+Animal::~Animal() {
+	std::cout << "Animal destroyed." << std::endl;
+}
+
+std::string Animal::getType() const {
+	return _type;
+}
+
+void Animal::setType(const std::string type) {
 	_type = type;
 }
 
-Animal::Animal()
-{
-	this->_type = "Beast";
-	std::cout<<"Default constructor called\n";
+void Animal::makeSound() const {
+	std::cout << _sound << std::endl;
 }
 
-Animal::Animal(std::string type)
-{
-	this->_type = type;
-	std::cout<<"Constructor called\n";
+Cat::Cat() : Animal("Cat") {
+	_sound = "Meow";
+	_brain = new(brain);
 }
 
-Animal& Animal::operator=(const Animal &a)
-{
-	if (this!= &a)
-	{
-		this->_type = a._type;
-		this->_sound = a._sound;
+Cat &Cat::operator=(const Cat &c) {
+	if (this != &c) {
+		Animal::operator=(c);
+		delete _brain;
+		_brain = new brain(*c._brain);
 	}
 	return *this;
 }
 
-Animal:: ~Animal()
-{
-	std::cout<<"Destructor called\n";
+Cat::~Cat() {
+	delete _brain;
 }
-
-void Animal::makeSound() const
-{
-	std::cout<<this->_sound<<std::endl;
-}
-
-Cat::Cat(): Animal("cat") {
-	Animal::_sound = "Meow";
-}
-
-Cat& Cat::operator=(const Cat &c)
-{
-	if (this!= &c)
-	{
-		this->_type = c._type;
-		this->_sound = c._sound;
-	}
-	return *this;
-}
-
-Cat::~Cat()
-{
-	std::cout<< "Cat Destructor called\n";
-}
-
-Dog::Dog(): Animal("dog") {
-	Animal::_sound = "Bau";
-}
-
-Dog& Dog::operator=(const Dog &d)
-{
-	if (this!= &d)
-	{
-		this->_type = d._type;
-		this->_sound = d._sound;
-	}
-	return *this;
-}
-
-Dog::~Dog()
-{
-	std::cout<< "Dog Destructor called\n";
-}
-
 
 void Cat::makeSound() const {
 	std::cout << _sound << std::endl;
 }
 
+
+Dog::Dog() : Animal("Dog") {
+	_brain = new(brain);
+	_sound = "Woof";
+}
+
+Dog &Dog::operator=(const Dog &d) {
+	if (this != &d) {
+		Animal::operator=(d);
+		delete _brain;
+		_brain = new brain(*d._brain);
+	}
+	return *this;
+}
+
+Dog::~Dog() {
+	delete _brain;
+}
+
 void Dog::makeSound() const {
 	std::cout << _sound << std::endl;
-}
-
-std::string Cat::getType() const {
-	return _type;
-}
-
-std::string Dog::getType() const {
-	return _type;
 }

@@ -13,38 +13,38 @@ class Animal
 	public:
 		std::string getType() const;
 		void setType(std::string);
-		void makeSound() const;
 
 		Animal();
 		Animal(std::string type);
 		Animal &operator=(const Animal &a);
-		~Animal();
+		virtual ~Animal();
 
+		virtual void makeSound() const;
 };
 
 class Cat: virtual public Animal
 {
 	private:
-		brain _brain[100];
+		brain *_brain;
 	public:
 		Cat ();
 		Cat &operator=(const Cat &c);
 		~Cat();
 
-		std::string virtual getType() const;
 		void makeSound() const;
 };
+
+
 
 class Dog: virtual public Animal
 {
 	private:
-		brain _brain[100];
+		brain *_brain;
 	public:
 		Dog ();
 		Dog &operator=(const Dog &d);
 		~Dog();
 
-		std::string virtual getType() const;
 		void makeSound() const;
 };
 

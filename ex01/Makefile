@@ -1,5 +1,5 @@
 NAME = polymorphism
-SRC = Polymorphism.cpp main.cpp
+SRC = Polymorphism.cpp main.cpp brain.cpp
 OBJ_DIR = obj
 OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 CPP = c++
