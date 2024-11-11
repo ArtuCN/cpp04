@@ -1,4 +1,4 @@
-SRC = main.cpp src/Animal.cpp src/Cat.cpp src/Dog.cpp
+SRC = main.cpp src/AMateria.cpp src/Character.cpp src/Cure.cpp src/Ice.cpp src/MaterialSource.cpp
 OBJ_DIR = obj
 OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 CC = c++

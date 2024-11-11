@@ -1,40 +1,42 @@
-NAME = polymorphism
-SRC = Polymorphism.cpp main.cpp brain.cpp
+SRC = main.cpp src/Animal.cpp src/Cat.cpp src/Dog.cpp src/Brain.cpp
 OBJ_DIR = obj
 OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
-CPP = c++
-FLAGS = -Wall -Wextra -Werror -std=c++98
+CC = c++
+CFLAGS = -Wall -Wextra -Werror -g -std=c++98
+RM = rm -f
+NAME = Polymorphism
 
-$(OBJ_DIR)/%.o : %.cpp
-		@mkdir -p $(OBJ_DIR)
-		@$(CPP) $(FLAGS) -c $< -o $@
-
-
-%.o	: %.cpp
-		@$(CPP) $(FLAGS) -c $< -o $@
 
 FUCHSIA = '\033[0;95m'
 CYAN = '\033[0;36m'
 NONE = '\033[0m'
 
+$(OBJ_DIR)/%.o: %.cpp
+		@mkdir -p $(dir $@)
+		@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME) : $(OBJ)
-		@$(CPP) $(FLAGS) $(OBJ) -o $(NAME)
-				@ echo $(CYAN)          "   ___            "$(NONE)
-				@ echo $(FUCHSIA)       "  / __\ _     _   "$(NONE)
-				@ echo $(CYAN)          " / /  _| |_ _| |_ "$(NONE)
-				@ echo $(FUCHSIA)       "/ /__|_   _|_   _|"$(NONE)
-				@ echo $(CYAN)          "\____/ |_|   |_|  "$(NONE)
-				@ echo $(FUCHSIA)       "                  "$(NONE)
-						
+all: $(NAME)
 
-all     : $(NAME)
 
-clean :
-		@rm -rf $(OBJ_DIR)
-fclean : clean
-		@rm -rf $(NAME)
-		
-re: clean all
+$(NAME): $(OBJ)
+		@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+		@ echo $(CYAN)          "   ___            "$(NONE)
+		@ echo $(FUCHSIA)       "  / __\ _     _   "$(NONE)
+		@ echo $(CYAN)          " / /  _| |_ _| |_ "$(NONE)
+		@ echo $(FUCHSIA)       "/ /__|_   _|_   _|"$(NONE)
+		@ echo $(CYAN)          "\____/ |_|   |_|  "$(NONE)
+		@ echo $(FUCHSIA)       "                  "$(NONE)
 
-.PHONY : all clean fclean re
+clean:
+		@$(RM) $(OBJ)
+		@$(RM) -r $(OBJ_DIR)
+		@echo "Removed object files"
+
+fclean: clean
+		@$(RM) $(NAME)
+		@$(RM) -r $(OBJ_DIR)
+		@echo "Removed $(NAME)"
+
+re: fclean all
+
+.PHONY: all clean fclean re
