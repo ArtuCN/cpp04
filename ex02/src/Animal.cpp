@@ -1,11 +1,11 @@
 #include "../includes/Animal.hpp"
 
-Animal::Animal() : _type("Animal") {
+A_Animal::A_Animal() : _type("Animal") {
 }
 
-Animal::Animal(std::string type) : _type(type) {}
+A_Animal::A_Animal(std::string type) : _type(type) {}
 
-Animal &Animal::operator=(const Animal &a) {
+A_Animal &A_Animal::operator=(const A_Animal &a) {
 	if (this != &a) {
 		_type = a._type;
 		_sound = a._sound;
@@ -13,14 +13,14 @@ Animal &Animal::operator=(const Animal &a) {
 	return *this;
 }
 
-Animal::~Animal() {
+A_Animal::~A_Animal() {
 	std::cout << "Animal destroyed." << std::endl;
 }
 
-std::string Animal::getType() const {
+std::string A_Animal::getType() const {
 	return _type;
 }
 
-void Animal::makeSound() const {
+void A_Animal::makeSound() const {
 	std::cout << _sound << std::endl;
 }

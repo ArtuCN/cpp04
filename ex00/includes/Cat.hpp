@@ -13,4 +13,18 @@ class Cat : public Animal {
 		void makeSound() const;
 };
 
+class WrongCat : public WrongAnimal {
+
+	public:
+		WrongCat(void);
+		WrongCat(const WrongCat& cat);
+
+		WrongCat& operator=(const WrongCat& cat);
+
+		void makeSound() const;
+
+		~WrongCat(void);
+};
+
+
 #endif
