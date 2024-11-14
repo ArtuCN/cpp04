@@ -3,7 +3,7 @@
 #include "../includes/Brain.hpp"
 
 
-Dog::Dog() : A_Animal("Dog") {
+Dog::Dog() : Animal("Dog") {
 	_brain = new(brain);
 	_sound = "Woof";
 }
@@ -14,7 +14,7 @@ Dog::Dog(const Dog &d) {
 
 Dog &Dog::operator=(const Dog &d) {
 	if (this != &d) {
-		A_Animal::operator=(d);
+		Animal::operator=(d);
 		_brain = new brain(*d._brain);
 	}
 	return *this;

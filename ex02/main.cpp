@@ -5,14 +5,15 @@
 
 int main(void) {
 
-	const A_Animal* i = new Cat();
-	const A_Animal* j = new Dog();
-	// const A_Animal* k = new A_Animal();
+	const Animal* i = new Cat();
+	const Animal* j = new Dog();
+	// const Animal* k = new Animal();
 
 	i->makeSound();
 
 	delete j;
 	delete i;
+	// delete k;
 
 	return 0;
 }
